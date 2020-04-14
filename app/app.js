@@ -41,4 +41,7 @@ app.use(function(err, req, res, next) {
   // res.render('error');
 });
 
+function generateAccessToken(user){}
+
+
 module.exports = app;

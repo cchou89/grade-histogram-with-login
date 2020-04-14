@@ -6,6 +6,6 @@ module.exports = async (conn, q, params) => new Promise(
                 return;
             }
             resolve(result);
-        }
+        };
         conn.query(q, params, handler);
     });

@@ -1,5 +1,4 @@
 const sql = require("./db.js");
-var jwt = require('jsonwebtoken');
 
 // constructor
 const User = function(user) {

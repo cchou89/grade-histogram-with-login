@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var verifyToken = require('../public/javascripts/verifyToken');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.send('respond with a resource');
 });
+
+
+router.get('/:username', verifyToken, function(req, res) {
+  res.send('respond with a resource');
+});
+
+
 
 module.exports = router;
