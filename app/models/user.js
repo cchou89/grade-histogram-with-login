@@ -1,4 +1,5 @@
 const sql = require("./db.js");
+var jwt = require('jsonwebtoken');
 
 // constructor
 const User = function(user) {
@@ -6,7 +7,8 @@ const User = function(user) {
     this.password = user.password;
 };
 
-User.findByUsername = (username, result) => {
+User.findByUsername = (request, result) => {
+    var username = request.body.username;
     sql.query(`SELECT * FROM users WHERE username = ${username}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -24,5 +26,11 @@ User.findByUsername = (username, result) => {
         result({ kind: "not_found" }, null);
     });
 };
+
+
+
+User.login = (request, response)=>{
+
+}
 
 module.exports = User;
