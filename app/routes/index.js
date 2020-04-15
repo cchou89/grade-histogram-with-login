@@ -19,22 +19,26 @@ router.post('/login', async function(request, response){
   //verify username and password
   const results = await query(
       db,
-      "SELECT * FROM `users` where username = '" + username + "' AND '" + password + "'"
-  ).catch(console.log)
-      .then(function(result){
-          if(result){
+      "SELECT * FROM `users` where username = '" + username + "' AND '" + password + "'")
+      .catch(console.log)
+      .then(function(result) {
               console.log(result);
+              request.session.user = result[0];
+
               //generate token
-              accessToken = jwt.sign(
-                  {user: username},
-                  'secretkey',
-                  (err, token)=>{
-                      response.json({
-                          token
-                      });
-                  });
-          }
-  });
+              // accessToken = jwt.sign(
+              //     {user: username},
+              //     'secretkey',
+              //     (err, token)=>{
+              //         response.json({
+              //             token
+              //         });
+              //     });
+      })
+      .catch(function(error){
+          console.log('you know nothing');
+          response.redirect('/');
+      });
 });
 
 module.exports = router;
