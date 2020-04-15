@@ -2,19 +2,21 @@
 //Authorization: Bearer <access_token>
 
 module.exports = (request, response, next) => {
-    //GET auth header value
-    const bearerHeader = request.headers['authorizaton'];
-    //CHeck if bearer is undefined
-    if(typeof bearerHeader !== 'undefined'){
-        //Split at the space
-        const bearer = bearerHeader.split(' ');
-        //Get token from Array
-        const bearerToken = bearer[1];
-        request.token = bearerToken;
-        next();
+    //verify session
+    console.log(request.session);
+    if(request.session.username === undefined){
+        response.redirect('../');
     }else{
-        //Forbidden
-        request.flash('error', "First log in");
-        response.redirect('/index')
+        next();
     }
+    // if(request.session.username){
+    //     console.log("there is a session");
+    //     console.log(request.session.username);
+    //     //move on
+    //     next();
+    // }else{
+    //     console.log("Houston we have a problem");
+    //     //go back to login
+    //     response.redirect('/');
+    // }
 };

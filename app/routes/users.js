@@ -3,8 +3,10 @@ var router = express.Router();
 var verifyToken = require('../public/javascripts/verifyToken');
 
 /* GET users listing. */
-router.get('/', function(req, res) {
-  res.send('respond with a resource');
+router.get('/', verifyToken, function(request, response) {
+  console.log(request.session);
+  console.log(request.cookies);
+  response.render('users/index', { title: 'Express', message: 'this works'});
 });
 
 
