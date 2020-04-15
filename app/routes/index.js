@@ -6,7 +6,7 @@ var crypto = require('crypto-js/md5');
 var jwt = require('jsonwebtoken');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express' , session: req.session});
 });
 
 router.post('/login', async function(request, response){

@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 
 var session = require('express-session');
+var fileUpload = require('express-fileupload');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');

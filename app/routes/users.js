@@ -6,7 +6,7 @@ var verifyToken = require('../public/javascripts/verifyToken');
 router.get('/', verifyToken, function(request, response) {
   console.log(request.session);
   console.log(request.cookies);
-  response.render('users/index', { title: 'Express', message: 'this works'});
+  response.render('users/index', {title: 'CMPT 470 Grade Compiler', session: request.session});
 });
 
 
