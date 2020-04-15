@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var query = require('../public/javascripts/query');
 var db= require('../models/db');
-var crypto = require('crypto-js/md5');
+var crypto = require('crypto')
+    .createHash('md5');
 var jwt = require('jsonwebtoken');
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,38 +11,34 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', async function(request, response){
+    var accessToken;
     var username = request.body.username;
     var password = request.body.password;
+    password = crypto.update(password).digest('hex');
 
   //verify username and password
-    await query(
-        db,
-        "SELECT * FROM `users` where username = '" + username + "'"
-    )
-        .catch(console.log)
-        .then(function(result) {
-          //set user session
-          var hashedPass = crypto(password);
-          if(hashedPass.toString() === result[0].password){
-              request.session.username = result[0].username;
-              //move to user page
-              response.redirect('/users');
-          }else{
-              response.redirect('/');
-          }})
-        .catch(function(error){
+  const results = await query(
+      db,
+      "SELECT * FROM `users` where username = '" + username + "' AND '" + password + "'")
+      .catch(console.log)
+      .then(function(result) {
+              console.log(result);
+              request.session.user = result[0];
+
+              //generate token
+              // accessToken = jwt.sign(
+              //     {user: username},
+              //     'secretkey',
+              //     (err, token)=>{
+              //         response.json({
+              //             token
+              //         });
+              //     });
+      })
+      .catch(function(error){
           console.log('you know nothing');
           response.redirect('/');
       });
-});
-
-router.get('/logout', function(request, response){
-    if(req.sesson.user && req.cookies.session_id){
-        response.clearCookie('user_sid');
-        response.redirect('../');
-    }else{
-        response.redirect('/login');
-    }
 });
 
 module.exports = router;
