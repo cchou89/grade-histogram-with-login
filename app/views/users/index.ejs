@@ -5,19 +5,79 @@
     <body>
     <% include ../partials/navbar %>
         <div style="width: 30%; margin: 25px auto;">
+
+            <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+                <% if( tableHeaders !== null && json !== null){%>
+                <table cellspacing="10">
+                    <tr>
+                    <%tableHeaders.forEach(function(header){%>
+                        <th><%=header%></th>
+                    <%})%>
+                    </tr>
+                    <%json.forEach(function (record) {%>
+                    <tr>
+                        <%tableHeaders.forEach(function(header){%>
+                        <td><%=record[header]%></td>
+                        <%})%>
+                    </tr>
+                    <%})%>
+                </table>
+                <%}%>
+            </div>
+
             <h1>Compile Grades</h1>
             <form ref= uploadForm
                   id = uploadForm
                   action="/users/compile"
                   method="post"
                   encType="multipart/form-data">
+
+                <% include ../partials/histogram.ejs %>
                 <div class="form-group">
                     <label>CSV File:
-                        <input name="csvfile" type="file">
+                        <input name="csvfile" type="file" required>
                         <input type='submit' value='Upload!' />
                     </label>
                 </div>
             </form>
+            <div class="form-group">
+                <label>Cutoffs:<br>
+                    <label>A+:
+                        <input name="APlus" type="range" min="0" max="100" ><br>
+                        <input type="text" name="Aplus_Num" placeholder="username">
+                    </label>
+                    <label>A:
+                    <input name="A" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>A-:
+                    <input name="AMinus" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>B+:
+                    <input name="BPlus" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>B:
+                    <input name="B" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>B-:
+                    <input name="BMinus" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>C+:
+                    <input name="CPlus" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>C:
+                    <input name="C" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>C-:
+                    <input name="CMinus" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>D:
+                    <input name="D" type="range" min="0" max="100"><br>
+                    </label>
+                    <label>F:
+                    <input name="F" type="range" min="0" max="100"><br>
+                    </label>
+                </label>
+            </div>
         </div>
     </body>
 </html>
