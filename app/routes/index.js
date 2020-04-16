@@ -36,8 +36,8 @@ router.post('/login', async function(request, response){
 });
 
 router.get('/logout', function(request, response){
-    if(request.sesson.user && request.cookies.session_id){
-        response.clearCookie('user_sid');
+    if(request.session.username && request.cookies.session_id){
+        response.clearCookie('session_id');
         response.redirect('../');
     }else{
         response.redirect('/login');

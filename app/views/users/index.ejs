@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <title></title>
     </head>
     <body>
     <% include ../partials/navbar %>
 
-    <h1>Compile Grades</h1>
         <div style="width: 30%; margin: 25px auto;">
-            <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+            <h1>Compile Grades</h1>
+            <div class="row text-center">
                 <% if( tableHeaders !== null && json !== null){%>
                 <table cellspacing="10">
                     <tr>

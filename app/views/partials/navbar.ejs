@@ -8,8 +8,6 @@
                 <% if(session.username){ %>
                     <li> Hello <%= session.username%></li>
                     <li><a href="/logout">Logout</a></li>
-                <%} else {%>
-                    <li><a href="/login">Login</a></li>
                 <%}%>
             </ul>
         </div>

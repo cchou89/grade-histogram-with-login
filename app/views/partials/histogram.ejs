@@ -1,6 +1,6 @@
 <div>
     <%if(gradeCounts!==null && letterGrade !==null){%>
-    <table class="histogram">
+    <table>
         <tbody>
         <%    var row =0;%>
         <tr>
@@ -13,6 +13,7 @@
         </tr>
         <%while(row > 0){%>
         <tr>
+            <td><%=row%></td>
             <%for(var j= 0; j< 11; j++){
                 if(gradeCounts[letterGrade[j]] >= row){%>
                 <td>O</td>
@@ -26,6 +27,7 @@
         <%}%>
         <tfoot>
             <tr>
+                <td>#</td>
                 <%letterGrade.forEach(grade =>{%>
                 <td><%=grade%></td>
                 <%});%>
