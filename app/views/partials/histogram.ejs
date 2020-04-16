@@ -1,30 +1,37 @@
-<style>
-    *{box-sizing: border-box;}
-    table{border-collapse:collapse;}
-    td,th{padding:5px 15px;text-align:left;}
-    table,th,td{border:1px solid #000;}
-</style>
-
 <div>
+    <%if(gradeCounts!==null && letterGrade !==null){%>
     <table class="histogram">
-        <%
-        var letterGrades = ['F', 'D', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
-        for(var i = 5; i>=0; i--){%>
-        <tr id="<%=i%>">
-            <%for(var j = 0; j<11; j++) {%>
-            <td> </td>
+        <tbody>
+        <%    var row =0;%>
+        <tr>
+            <%for(var i= 0; i< 11; i++){
+                if(gradeCounts[letterGrade[i]] >row){
+                    //get total number of rows needed
+                    row = gradeCounts[letterGrade[i]];
+                }
+            }%>
+        </tr>
+        <%while(row > 0){%>
+        <tr>
+            <%for(var j= 0; j< 11; j++){
+                if(gradeCounts[letterGrade[j]] >= row){%>
+                <td>O</td>
             <%}
-        }%>
+                else{%>
+                <td><%=gradeCounts[letterGrade[i]]%></td>
+                <%}
+            }
+            row-=1;%>
+        </tr>
+        <%}%>
         <tfoot>
             <tr>
-                <%letterGrades.forEach(grade =>{%>
+                <%letterGrade.forEach(grade =>{%>
                 <td><%=grade%></td>
-                <%})%>
+                <%});%>
             </tr>
-        <tfoot>
+            </tfoot>
+        </tbody>
     </table>
+    <%}%>
 </div>
-
-<script>
-
-</script>
