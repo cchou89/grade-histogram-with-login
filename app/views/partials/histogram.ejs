@@ -6,58 +6,25 @@
 </style>
 
 <div>
-    <table>
-        <tr>
+    <table class="histogram">
+        <%
+        var letterGrades = ['F', 'D', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
+        for(var i = 5; i>=0; i--){%>
+        <tr id="<%=i%>">
+            <%for(var j = 0; j<11; j++) {%>
             <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-        </tr>
+            <%}
+        }%>
         <tfoot>
             <tr>
-            <td>F</td>
-            <td>D</td>
-            <td>C-</td>
-            <td>C</td>
-            <td>C+</td>
-            <td>B-</td>
-            <td>B</td>
-            <td>B+</td>
-            <td>A-</td>
-            <td>A+</td>
+                <%letterGrades.forEach(grade =>{%>
+                <td><%=grade%></td>
+                <%})%>
             </tr>
         <tfoot>
-
     </table>
-
 </div>
+
+<script>
+
+</script>
