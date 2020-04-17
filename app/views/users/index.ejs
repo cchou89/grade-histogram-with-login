@@ -7,7 +7,7 @@
     <body>
     <% include ../partials/navbar %>
 
-        <div style="width: 30%; margin: 25px auto;">
+        <div style="width: 30%; margin: 25px auto;" >
             <h1>Compile Grades</h1>
             <div class="row text-center">
                 <% if( tableHeaders !== null && json !== null){%>
@@ -30,6 +30,7 @@
             <br>
             <% include ../partials/histogram.ejs %>
             <br>
+            <div>
             <form ref= uploadForm
                   id = uploadForm
                   action="/users/compile"
@@ -85,6 +86,7 @@
                     <%}%>
                 </div>
             </form>
+        </div>
         </div>
     </body>
     <script>

@@ -5,6 +5,7 @@ module.exports = (request, response, next) => {
     //verify session
     console.log(request.session);
     if(request.session.username === undefined){
+        request.flash('error', 'Please log in');
         response.redirect('../');
     }else{
         next();

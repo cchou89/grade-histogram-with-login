@@ -3,10 +3,10 @@ var router = express.Router();
 var query = require('../public/javascripts/query');
 var db= require('../models/db');
 var crypto = require('crypto-js/md5');
-var jwt = require('jsonwebtoken');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' , session: req.session});
+  res.render('index', { title: 'CMPT Final Project' , session: req.session, error: null});
 });
 
 router.post('/login', async function(request, response){
@@ -30,7 +30,6 @@ router.post('/login', async function(request, response){
               response.redirect('/');
           }})
         .catch(function(error){
-          console.log('you know nothing');
           response.redirect('/');
       });
 });
@@ -42,6 +41,12 @@ router.get('/logout', function(request, response){
     }else{
         response.redirect('/login');
     }
+});
+
+router.get('/flash', function(req, res){
+    // Set a flash message by passing the key, followed by the value, to req.flash().
+    req.flash('info', 'Please Login')
+    res.redirect('/');
 });
 
 module.exports = router;
