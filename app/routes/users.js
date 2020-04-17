@@ -41,6 +41,8 @@ router.post('/compile', async function(request, response){
                       semesterGrade += gradeItem;
                   }
               });
+              semesterGrade = semesterGrade.toFixed(2);
+
               record.Semester = semesterGrade;
           }else{
               record.Semester = 100;

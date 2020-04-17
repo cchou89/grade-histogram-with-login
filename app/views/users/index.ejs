@@ -17,13 +17,21 @@
                         <th><%=header%></th>
                     <%})%>
                     </tr>
-                    <%json.forEach(function (record) {%>
+                    <%json.forEach(function (record) {
+                        if(record.studentID === 'total'){%>
+                    <tr>
+                    <%tableHeaders.forEach(function(header){%>
+                    <td style="color: darkred"><%=record[header]%></td>
+                        <%})%>
+                    </tr>
+                    <%}else{%>
                     <tr>
                         <%tableHeaders.forEach(function(header){%>
                         <td><%=record[header]%></td>
                         <%})%>
                     </tr>
-                    <%})%>
+                    <%}
+                    })%>
                 </table>
                 <%}%>
             </div>
